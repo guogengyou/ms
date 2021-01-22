@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>樱桃秒杀</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/xadmin/css/font.css">
+	<link rel="stylesheet" href="/static/xadmin/css/xadmin.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+    <script src="/static/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/xadmin/js/xadmin.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/ms/css/style.css"/>
+    <script>
+        function load(){
+        　　// 后端返回Json格式的数据,加载产品title、detail
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {
+            	//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            	xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {
+            	// IE6, IE5 浏览器执行代码
+            	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+            	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            	{
+            	    obj = JSON.parse(xmlhttp.responseText); 
+            	    document.getElementById("goods_title").innerHTML=obj.title;
+            	    document.getElementById("goods_detail").innerHTML=obj.detail;
+            	}
+            }
+            xmlhttp.open('post',"{:url('@ms/index/goods_load')}");
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send();
+        }    
+        function qg(){
+            //alert("你点击了按钮哦"); 
+            var code = document.getElementById("code");     //要验证的对
+            if (window.XMLHttpRequest)
+            {
+            	//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            	xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {
+            	// IE6, IE5 浏览器执行代码
+            	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+            	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            	{
+            	    alert(xmlhttp.responseText); 
+            	    //obj = JSON.parse(xmlhttp.responseText); 
+            	    //document.getElementById("goods_title").innerHTML=obj.title;
+            	    //document.getElementById("goods_detail").innerHTML=obj.detail;
+            	}
+            }
+            xmlhttp.open('post',"{:url('@ms/index/qg_goods')}");
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send('code='+code.value);            
+        }
+    </script>
+</head>
+
+<body onload="load();">
+    <!-- 顶部开始 -->
+    <div class="container">
+        <div class="open-nav"><i class="iconfont">&#xe699;</i></div>
+        <ul class="layui-nav right" lay-filter="">
+          <li class="layui-nav-item">
+            <a href="javascript:;">用户</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+              <dd><a href="{:url('@ms/index/change_userinfo')}">修改信息</a></dd>
+              <dd><a href="{:url('@ms/login/logout')}">退出</a></dd>         
+            </dl>
+          </li>
+          <li class="layui-nav-item"><a href="{:url('@ms/index/index')}">首页</a></li>
+        </ul>
+    </div>
+    <!-- 顶部结束 -->
+    <!-- 中部开始 -->
+    <div class="wrapper">
+        <!-- 左侧菜单开始 -->
+        {include file="../application/ms/view/include/leftmenu.php" /}
+        <!-- 左侧菜单结束 -->
+        
+        <!-- 右侧主体开始 -->
+    	<div class="ProductPicture">   </div>
+    	<div id="goods_title" class="ProductIntroduction"> </div>
+    	<button class="button"  onclick="qg()">抢购</button>
+    	
+        <div class="loginbox-textbox">
+            <input id="code" style="color:#000000;width:150px; left:5000px;float:left;margin:2px 450px 5px 450px;" class="form-control" placeholder="输入验证码完成抢购" name="code"  type="text">
+            <img id="cap" alt="验证码" title="点击刷新" style="cursor:pointer; height:40px;width:140px;margin:2px 450px 50px 450px;" onclick="this.src='{:captcha_src()}'" src="{:captcha_src()}"/>
+        </div>
+            
+    	<div id="goods_detail" class="ps"> </div>
+
+
+        <!-- 右侧主体结束 -->
+    </div>
+    <!-- 中部结束 -->
+    <!-- 底部开始 -->
+    <div class="footer">
+        <div class="copyright"></div>  
+    </div>
+    <!-- 底部结束 -->
+    <!-- 背景切换开始 -->
+	<div class="bg-changer">
+        <div class="swiper-container changer-list">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/a.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/b.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/c.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/d.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/e.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/f.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/g.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/h.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/i.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/j.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/k.jpg" alt=""></div>
+                <div class="swiper-slide"><span class="reset">初始化</span></div>
+            </div>
+        </div>
+        <div class="bg-out"></div>
+        <div id="changer-set"><i class="iconfont">&#xe696;</i></div>   
+    </div>
+    <!-- 背景切换结束 -->
+
+</body>
+</html>

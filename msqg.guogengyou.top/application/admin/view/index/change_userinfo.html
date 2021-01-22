@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>樱桃秒杀系统后台</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/xadmin/css/font.css">
+	<link rel="stylesheet" href="/static/xadmin/css/xadmin.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+    <script src="/static/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/xadmin/js/xadmin.js"></script>
+    <script>
+        function validateForm(){
+        　　// 验证密码
+        　　obj = document.getElementById("password");    
+　          reg = new RegExp("^[A-Za-z0-9]{4,10}$"); //正则表达式
+　　        if(obj.value === ""){ //输入不能为空
+　　　    　    alert("输入不能为空!");
+　    　　　    return false;
+　　        }else if(!reg.test(obj.value)){ //正则验证不通过，格式不对
+　　　　        alert("请仔细检查输入！");
+　　　          return false;
+            }else{
+            　  return true;
+            }        　　
+        }
+    </script>
+
+</head>
+<body>
+    <!-- 顶部开始 -->
+    <div class="container">
+        <div class="open-nav"><i class="iconfont">&#xe699;</i></div>
+        <ul class="layui-nav right" lay-filter="">
+          <li class="layui-nav-item">
+            <a href="javascript:;">管理员</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+              <dd><a href="{:url('@admin/index/change_userinfo')}">修改密码</a></dd>
+              <dd><a href="{:url('@admin/login/logout')}">退出</a></dd>         
+            </dl>
+          </li>
+          <li class="layui-nav-item"><a href="{:url('@admin/index/index')}">后台首页</a></li>
+        </ul>
+    </div>
+    <!-- 顶部结束 -->
+    <!-- 中部开始 -->
+    <div class="wrapper">
+        
+        <!-- 右侧主体开始 -->
+        <div class="page-content">
+          <div class="content">
+            <!-- 右侧内容框架，更改从这里开始 -->
+            <blockquote class="layui-elem-quote">
+                邮箱验证码已发送至 2001210254@stu.pku.edu.cn，请凭验证码修改密码！<span class="f-14"></span> 
+            </blockquote>
+            <br>
+            <br />
+            <fieldset class="layui-elem-field layui-field-title site-title">            
+              <legend><a name="default">修改：</a></legend>
+            </fieldset>
+            
+            <form id="myForm" method="post" action="{:url('@admin/index/dochange_userinfo')}" onsubmit="return validateForm();">
+		        &nbsp;&nbsp;&nbsp;邮箱验证码: <input style="color: #000000" id="code" type="text" name="code" required="required">&nbsp;&nbsp;&nbsp;
+		        新密码: <input id = "password" style="color: #000000"  type="text" name="password" required="required">
+		               <input type="submit" style="color:sienna;margin:10px" value="提交">
+		
+	        </form>
+
+            
+            <!-- 右侧内容框架，更改从这里结束 -->
+          </div>
+          
+        </div>
+        <!-- 右侧主体结束 -->
+    </div>
+    <!-- 中部结束 -->
+    <!-- 底部开始 -->
+    <div class="footer">
+        <div class="copyright"></div>  
+    </div>
+    <!-- 底部结束 -->
+    <!-- 背景切换开始 -->
+	<div class="bg-changer">
+        <div class="swiper-container changer-list">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/a.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/b.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/c.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/d.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/e.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/f.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/g.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/h.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/i.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/j.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/k.jpg" alt=""></div>
+                <div class="swiper-slide"><span class="reset">初始化</span></div>
+            </div>
+        </div>
+        <div class="bg-out"></div>
+        <div id="changer-set"><i class="iconfont">&#xe696;</i></div>   
+    </div>
+    <!-- 背景切换结束 -->
+
+</body>
+</html>

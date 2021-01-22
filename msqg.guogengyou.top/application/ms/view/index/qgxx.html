@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>樱桃秒杀系统后台</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/xadmin/css/font.css">
+	<link rel="stylesheet" href="/static/xadmin/css/xadmin.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+    <script src="/static/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/xadmin/js/xadmin.js"></script>
+</head>
+<body>
+    <!-- 顶部开始 -->
+    <div class="container">
+        <div class="open-nav"><i class="iconfont">&#xe699;</i></div>
+        <ul class="layui-nav right" lay-filter="">
+          <li class="layui-nav-item">
+            <a href="javascript:;">用户</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+              <dd><a href="{:url('@ms/index/change_userinfo')}">修改信息</a></dd>
+              <dd><a href="{:url('@ms/login/logout')}">退出</a></dd>         
+            </dl>
+          </li>
+          <li class="layui-nav-item"><a href="{:url('@ms/index/index')}">首页</a></li>
+        </ul>
+    </div>
+    <!-- 顶部结束 -->
+    <!-- 中部开始 -->
+    <div class="wrapper">
+        <!-- 左侧菜单开始 -->
+        {include file="../application/ms/view/include/leftmenu.php" /}
+        <!-- 左侧菜单结束 -->
+        
+        <!-- 右侧主体开始 -->
+        <div class="page-content">
+          <div class="content">
+            <!-- 右侧内容框架，更改从这里开始 -->
+
+            <br>
+            <fieldset class="layui-elem-field layui-field-title site-title">            
+              <legend><a name="default">抢购信息：</a></legend>
+            </fieldset>
+            
+            <table class="layui-table">
+                <thead>
+                    <tr>
+                        <th>邮箱/账号</th>
+                        <th>抢购状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {volist name="lists" id="vo"}
+                        <tr>
+                            <td>{$vo.email}</td>
+                            <td>{$vo.order_status}</td>
+                        </tr>
+                    {/volist}
+                </tbody>
+            </table>
+            <br />
+            <p>   订单状态：未抢到0、抢到特惠价1、抢到优惠价2、支付成功3</p><br><br>
+            <button style = "color:#000000" type="button">支付</button>
+            <!-- 右侧内容框架，更改从这里结束 -->
+          </div>
+          
+        </div>
+        <!-- 右侧主体结束 -->
+    </div>
+    <!-- 中部结束 -->
+    <!-- 底部开始 -->
+    <div class="footer">
+        <div class="copyright"></div>  
+    </div>
+    <!-- 底部结束 -->
+    <!-- 背景切换开始 -->
+	<div class="bg-changer">
+        <div class="swiper-container changer-list">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/a.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/b.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/c.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/d.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/e.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/f.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/g.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/h.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/i.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/j.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/xadmin/images/k.jpg" alt=""></div>
+                <div class="swiper-slide"><span class="reset">初始化</span></div>
+            </div>
+        </div>
+        <div class="bg-out"></div>
+        <div id="changer-set"><i class="iconfont">&#xe696;</i></div>   
+    </div>
+    <!-- 背景切换结束 -->
+
+</body>
+</html>

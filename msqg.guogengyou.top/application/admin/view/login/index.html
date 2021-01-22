@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>后台登录</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/xadmin/css/font.css">
+	<link rel="stylesheet" href="/static/xadmin/css/xadmin.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+    <script src="/static/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/xadmin/js/xadmin.js"></script>
+    <script>
+        function validateForm(){
+            // 验证邮箱
+            var obj = document.getElementById("email");     //要验证的对象
+　       　 var reg = new RegExp("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$"); //正则表达式
+　　        if(obj.value === ""){ //输入不能为空
+　　　    　    alert("输入不能为空!");
+　    　　　    return false;
+　　        }else if(!reg.test(obj.value)){ //正则验证不通过，格式不对
+　　　　        alert("请仔细检查输入！");
+　　　          return false;
+        　　}
+        　　// 验证密码
+        　　obj = document.getElementById("password");    
+　       　 reg = new RegExp("^[A-Za-z0-9]{4,10}$"); //正则表达式
+　　        if(obj.value === ""){ //输入不能为空
+　　　    　    alert("输入不能为空!");
+　    　　　    return false;
+　　        }else if(!reg.test(obj.value)){ //正则验证不通过，格式不对
+　　　　        alert("请仔细检查输入！");
+　　　          return false;
+        　　}else{
+        　　      return true;
+            }        　　
+        }
+    </script>
+
+</head>
+<body>
+    <div class="login-logo"><h1>登陆秒杀系统后台</h1></div>
+    <div class="login-box">
+        <form name="myForm" class="layui-form layui-form-pane" action="{:url('@admin/login/dologin')}" onsubmit="return validateForm();" method="post"> 
+            <h3>登录你的帐号</h3>
+            <label class="login-title" for="username">帐号</label>
+            <div class="layui-form-item">
+                <label class="layui-form-label login-form"><i class="iconfont">&#xe6b8;</i></label>
+                <div class="layui-input-inline login-inline">
+                  <input id="email" type="text" name="email" lay-verify="required" placeholder="请输入你的邮箱号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <label class="login-title" for="password">密码</label>
+            <div class="layui-form-item">
+                <label class="layui-form-label login-form"><i class="iconfont">&#xe82b;</i></label>
+                <div class="layui-input-inline login-inline">
+                  <input id="password" type="text" name="password" lay-verify="required" placeholder="请输入你的密码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            
+            <label class="login-title" for="code">验证码</label>
+            <div class="loginbox-textbox">
+                <input style="color:#000000;width:150px; float:left;margin:5px;" class="form-control" placeholder="请输入验证码" name="code"  type="text">
+                <img id="cap" alt="验证码" title="点击刷新" style="cursor:pointer; height:40px;width:140px;margin:5px;" onclick="this.src='{:captcha_src()}'" src="{:captcha_src()}"/>
+            </div>
+            
+            <div class="form-actions">
+                <button class="btn btn-warning pull-right" lay-submit lay-filter="login"  type="submit">登录</button>
+                <div class="forgot"><a href="{:url('@admin/login/changepw')}" class="forgot">忘记密码</a></div>     
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

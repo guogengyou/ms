@@ -1,0 +1,2 @@
+1、Go服务器在Goserver中
+2、用mysql导入.sql文件
